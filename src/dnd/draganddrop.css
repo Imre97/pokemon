@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    background-color: rgb(177, 126, 243);
+    min-height: 100vh;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-rows: auto auto;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.groupBox {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+    margin-top: 20px;
+    border: 1px solid black;
+}
+
+.title {
+    align-self: flex-start;
+    justify-self: flex-start;
+}
+
+.dndCard {
+    max-width: 300px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.cardTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cardImg {
+    width: 150px;
+    height: 150px;
+}

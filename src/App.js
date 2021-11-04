@@ -1,15 +1,23 @@
 import { useState, useEffect } from 'react'
 import './App.css';
+import DragAndDrop from './dnd/DragAndDrop';
 
 function App() {
 
   const [pokemons, setPokemons] = useState([])
-  const [pokeApi, setpokeApi] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
+  const [pokeApi, setPokeApi] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')  
+
+  const dndData = [{groupTitle: 'Kedvenc pokemon', groupItems: []},
+                  {groupTitle: 'Pokemonok', groupItems: [...pokemons]}
+                  ]
+
 
 
   const getPokemons = async () => {
     const res = await fetch(pokeApi)
     const data = await res.json()
+
+    setPokeApi(data.next)
 
 
 
@@ -35,14 +43,8 @@ function App() {
 
   return (
     <div className="App">
-      {pokemons.map((pokemon, i) => {
-        return (
-          <>
-            <div key={i}>{pokemon.name}</div>
-            <img src={pokemon.thumbnail} />
-          </>
-        )
-      })}
+      
+      <DragAndDrop data={dndData} />
     </div>
   );
 }
