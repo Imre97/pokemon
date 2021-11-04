@@ -7,9 +7,6 @@ function App() {
   const [pokemons, setPokemons] = useState([])
   const [pokeApi, setPokeApi] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')  
 
-  const dndData = [{groupTitle: 'Kedvenc pokemon', groupItems: []},
-                  {groupTitle: 'Pokemonok', groupItems: [...pokemons]}
-                  ]
 
 
 
@@ -26,14 +23,14 @@ function App() {
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${result.name}`)
         const data = await res.json()
         let currentPokemon = { name: data.forms[0].name, thumbnail: data.sprites.other.dream_world.front_default }
+        console.log(currentPokemon)
         setPokemons(prev => [...prev, currentPokemon])
-
+        console.log(pokemons) 
       })
-      console.log(pokemons)
     }
 
     getPokeObj(data.results)
-
+    
   }
 
   useEffect(() => {
@@ -44,7 +41,7 @@ function App() {
   return (
     <div className="App">
       
-      <DragAndDrop data={dndData} />
+      <DragAndDrop data={pokemons} />
     </div>
   );
 }

@@ -43,6 +43,10 @@
     margin-bottom: 20px;
 }
 
+.current {
+    display: none;
+}
+
 .cardTitle {
     font-size: 18px;
     font-weight: bold;
