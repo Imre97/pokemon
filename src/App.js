@@ -27,6 +27,7 @@ function App() {
         setPokemons(prev => [...prev, currentPokemon])
         console.log(pokemons) 
       })
+      
     }
 
     getPokeObj(data.results)
@@ -41,7 +42,8 @@ function App() {
   return (
     <div className="App">
       
-      <DragAndDrop data={pokemons} />
+      <DragAndDrop data={pokemons} getPokemons={getPokemons} />
+
     </div>
   );
 }

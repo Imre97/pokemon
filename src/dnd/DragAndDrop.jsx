@@ -1,13 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react'
 import './draganddrop.css'
 
-export default function DragAndDrop({ data }) {
+export default function DragAndDrop({ data, getPokemons }) {
 
     const [dragged, setDragged] = useState(false)
     const [dndData, setDndData] = useState([])
 
     const dragItem = useRef()
     const dragNode = useRef()
+
+    
 
 
     useEffect(() => {
@@ -16,7 +18,7 @@ export default function DragAndDrop({ data }) {
             setDndData([{ groupTitle: "Kedvenc pokemon", groupItems: [] }, { groupTitle: "Pokemonok", groupItems: data }])
             console.log(data)
         }, 2000)
-        
+
     }, [])
 
     const handleDragStart = (e, params) => {
@@ -26,12 +28,13 @@ export default function DragAndDrop({ data }) {
         setTimeout(() => {
             setDragged(true)
         }, 0)
+
     }
 
     const handleDragEnter = (e, params) => {
         console.log('enter', params)
         const currentItem = dragItem.current
-        if(e.target !== dragNode.current){
+        if (e.target !== dragNode.current) {
             setDndData(prev => {
                 let newData = JSON.parse(JSON.stringify(prev))
                 newData[params.groupI].groupItems.splice(params.itemI, 0, newData[currentItem.groupI].groupItems.splice(currentItem.itemI, 1)[0])
@@ -61,10 +64,10 @@ export default function DragAndDrop({ data }) {
         <div className="container">
             <div className="wrapper">
                 {dndData.map((groupBox, groupI) => (
-                    <div key={groupI} className="groupBox" onDragEnter={dragged && !groupBox.groupItems.length ? (e) => handleDragEnter(e, {groupI, itemI: 0}) : null}>
+                    <div key={groupI} className="groupBox" onDragEnter={dragged && !groupBox.groupItems.length ? (e) => handleDragEnter(e, { groupI, itemI: 0 }) : null}>
                         <div className="title">{groupBox.groupTitle}</div>
                         {groupBox.groupItems.map((item, itemI) => (
-                            <div draggable onDragEnter={(e) => {handleDragEnter(e, {groupI, itemI})}} onDragStart={(e) => handleDragStart(e, { groupI, itemI })} key={itemI} className={dragged ? getStyle({ groupI, itemI }) : "dndCard"}>
+                            <div draggable onDragEnter={(e) => { handleDragEnter(e, { groupI, itemI }) }} onDragStart={(e) => handleDragStart(e, { groupI, itemI })} key={itemI} className={dragged ? getStyle({ groupI, itemI }) : "dndCard"}>
                                 <div className="cardTitle">{item.name}</div>
                                 <img src={item.thumbnail} className="cardImg" />
                             </div>
@@ -72,6 +75,8 @@ export default function DragAndDrop({ data }) {
                     </div>
                 ))}
             </div>
+
+            <button className="pokemonButton" onClick={getPokemons}>Több pokemon</button>
         </div>
     )
 }
