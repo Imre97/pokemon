@@ -42,6 +42,13 @@
     justify-content: center;
     margin-right: 20px;
     margin-bottom: 20px;
+    cursor: -webkit-grab;
+}
+
+.dndCard:active {
+    cursor: move;
+    cursor: -webkit-grabbing;
+    display: inline-block;
 }
 
 .current {

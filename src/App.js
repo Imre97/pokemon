@@ -25,11 +25,9 @@ function App() {
         let currentPokemon = { name: data.forms[0].name, thumbnail: data.sprites.other.dream_world.front_default }
         console.log(currentPokemon)
         setPokemons(prev => [...prev, currentPokemon])
-        console.log(pokemons) 
       })
       
     }
-
     getPokeObj(data.results)
     
   }

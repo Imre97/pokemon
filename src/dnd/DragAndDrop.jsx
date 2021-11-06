@@ -9,17 +9,11 @@ export default function DragAndDrop({ data, getPokemons }) {
     const dragItem = useRef()
     const dragNode = useRef()
 
-    
-
-
     useEffect(() => {
-        setTimeout(() => {
+        setDndData([{ groupTitle: "Kedvenc pokemon", groupItems: [] }, { groupTitle: "Pokemonok", groupItems: data }])
+        console.log(dndData)
+    }, [data])
 
-            setDndData([{ groupTitle: "Kedvenc pokemon", groupItems: [] }, { groupTitle: "Pokemonok", groupItems: data }])
-            console.log(data)
-        }, 2000)
-
-    }, [])
 
     const handleDragStart = (e, params) => {
         dragItem.current = params
@@ -31,8 +25,8 @@ export default function DragAndDrop({ data, getPokemons }) {
 
     }
 
+
     const handleDragEnter = (e, params) => {
-        console.log('enter', params)
         const currentItem = dragItem.current
         if (e.target !== dragNode.current) {
             setDndData(prev => {
@@ -45,7 +39,6 @@ export default function DragAndDrop({ data, getPokemons }) {
     }
 
     const dragEnd = () => {
-        console.log('dragEnd')
         setDragged(false)
         dragNode.current.removeEventListener('dragend', dragEnd)
         dragItem.current = null
