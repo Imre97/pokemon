@@ -23,7 +23,6 @@ function App() {
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${result.name}`)
         const data = await res.json()
         let currentPokemon = { name: data.forms[0].name, thumbnail: data.sprites.other.dream_world.front_default }
-        console.log(currentPokemon)
         setPokemons(prev => [...prev, currentPokemon])
       })
       

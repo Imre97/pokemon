@@ -11,7 +11,6 @@ export default function DragAndDrop({ data, getPokemons }) {
 
     useEffect(() => {
         setDndData([{ groupTitle: "Kedvenc pokemon", groupItems: [] }, { groupTitle: "Pokemonok", groupItems: data }])
-        console.log(dndData)
     }, [data])
 
 
